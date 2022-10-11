@@ -133,8 +133,9 @@ class BinaryTree:
                 lefts.append(level[0])
                 rights.append(level[-1])
 
-            print("LEFT Nodes", lefts)
-            print("RIGHT Nodes", rights)
+            print("LEFT sides", lefts)
+            print("RIGHT sides", rights)
+            print("Height of Tree:", len(final_list))
 
 
 # Driver code
@@ -188,6 +189,8 @@ c.left, c.right = f, g
 d.left, d.right = h, i
 f.left, f.right = j, k
 g.right = l
+l.left = Node('m')
+l.right = Node('n')
 """
               1
             /   \
@@ -199,7 +202,6 @@ g.right = l
 """
 
 bt = BinaryTree()
-
 
 print("Preorder traversal of binary tree is")
 bt.pre_order(root)
@@ -214,6 +216,5 @@ bt.post_order(root)
 
 
 # bt.level_order_level_by_level(root)
-
 
 # bt.level_order_lefts_and_rights(root)
