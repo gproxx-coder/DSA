@@ -379,6 +379,79 @@ class BinaryTree:
         else:
             return left if left else right
 
+    # @staticmethod
+    # def zig_zag_traversal(root):
+    #     if root:
+    #         queue = [root, None]
+    #         final, level = [], []
+    #         level_no = 1
+    #         while any(queue):
+    #             ptr = queue.pop(0)
+    #
+    #             if ptr:
+    #                 level.append(ptr)
+    #
+    #                 if level_no % 2 == 0:
+    #                     if ptr.left:
+    #                         queue.append(ptr.left)
+    #
+    #                     if ptr.right:
+    #                         queue.append(ptr.right)
+    #                 else:
+    #                     if ptr.right:
+    #                         queue.append(ptr.right)
+    #
+    #                     if ptr.left:
+    #                         queue.append(ptr.left)
+    #             else:
+    #                 queue.append(None)
+    #                 final.append(level)
+    #                 level = []
+    #         else:
+    #             final.append(level)
+    #
+    #         return final
+    #     return []
+
+    @staticmethod
+    def zig_zag_traversal(root):
+        if root:
+            final, level = [], []
+            stack_1, stack_2 = [], []
+            stack_1.append(root)
+
+            while stack_1 or stack_2:
+                while stack_1:
+                    # pop from s1 and print
+                    popped_s1 = stack_1.pop()
+                    level.append(popped_s1)
+
+                    # push to s2 in left to right manner
+                    if popped_s1.left:
+                        stack_2.append(popped_s1.left)
+                    if popped_s1.right:
+                        stack_2.append(popped_s1.right)
+
+                final.append(level)
+                level = []
+
+                while stack_2:
+                    # pop from s2 and print
+                    popped_s2 = stack_2.pop()
+                    level.append(popped_s2)
+
+                    # push to s2 in right to left manner
+                    if popped_s2.right:
+                        stack_1.append(popped_s2.right)
+                    if popped_s2.left:
+                        stack_1.append(popped_s2.left)
+
+                final.append(level)
+                level = []
+
+            return final
+        return []
+
 
 if __name__ == '__main__':
     a = Node('a')
@@ -431,5 +504,7 @@ if __name__ == '__main__':
     # print("Top nodes of the tree:", tree_ops.top_view(root))
     # print("Bottom nodes of the tree:", tree_ops.bottom_view(root))
 
-    n1, n2 = Node('j'), Node('e')
-    print(f"Lowest common ancestor of {n1} and {n2}: {tree_ops.lowest_common_ancestor(root, n1, n2)}")
+    # n1, n2 = Node('j'), Node('e')
+    # print(f"Lowest common ancestor of {n1} and {n2}: {tree_ops.lowest_common_ancestor(root, n1, n2)}")
+
+    print("Zig Zag:", tree_ops.zig_zag_traversal(root))
