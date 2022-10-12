@@ -478,6 +478,7 @@ if __name__ == '__main__':
 
     tree_ops = BinaryTree()
 
+
     # print(tree_ops.preorder_traversal(root))
 
     # print(tree_ops.preorder_traversal(root))
