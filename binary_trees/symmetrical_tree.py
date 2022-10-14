@@ -21,7 +21,15 @@ def check_symmetrical(root):
         while any(queue):
             ptr = queue.pop(0)
             if ptr:
-                level.append(ptr)
+
+                if not ptr.left:
+                    level.append(None)
+
+                level.append(ptr.val)
+
+                if not ptr.right:
+                    level.append(None)
+
                 if ptr.left:
                     queue.append(ptr.left)
                 if ptr.right:
@@ -35,13 +43,6 @@ def check_symmetrical(root):
 
     left = level_order(root.left)
     right = level_order(root.right)
-
-    # if len(left) == len(right):
-    #     for idx in range(len(left)):
-    #         if len(left[idx]) == len(left[idx]):
-    #             for inx in range(len(left)):
-    #                 print(left[inx], right[inx])
-    #         return False
 
     if len(left) == len(right):
         for idx in range(len(left)):
@@ -57,10 +58,25 @@ def check_symmetrical(root):
 if __name__ == '__main__':
     root = Node(1)
     root.left = Node(2)
-    root.right = Node(3)
+    root.right = Node(2)
     root.left.left = Node(3)
     root.left.right = Node(4)
     root.right.left = Node(4)
     root.right.right = Node(3)
+
+    # root = Node(1)
+    # root.left = Node(0)
+
+    # root = Node(1)
+    # root.left = Node(2)
+    # root.right = Node(2)
+    # root.left.right = Node(3)
+    # root.right.left = Node(3)
+
+    # root = Node(1)
+    # root.left = Node(2)
+    # root.right = Node(2)
+    # root.left.right = Node(3)
+    # root.right.right = Node(3)
 
     print(check_symmetrical(root))
