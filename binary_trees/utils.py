@@ -471,10 +471,10 @@ if __name__ == '__main__':
 
     a.left, a.right = b, c
     b.left, b.right = d, e
-    c.left, c.right = f, g
-    d.left, d.right = h, i
-    f.left, f.right = j, k
-    g.right = l
+    # c.left, c.right = f, g
+    # d.left, d.right = h, i
+    # f.left, f.right = j, k
+    # g.right = l
 
     tree_ops = BinaryTree()
 
@@ -494,12 +494,12 @@ if __name__ == '__main__':
     #     print(level)
     # print("****************************************************")
 
-    # print("Height of the tree:", tree_ops.get_height(root))
+    print("Height of the tree:", tree_ops.get_height(root))
 
     # print("Left nodes of the tree:", tree_ops.get_left_side_nodes(root))
     # print("Right nodes of the tree:", tree_ops.get_right_side_nodes(root))
 
-    # print("Diameter of the tree:",tree_ops.get_diameter(root))
+    print("Diameter of the tree:",tree_ops.get_diameter(root))
 
     # print("Vertical Order Traversal:", tree_ops.vertical_order_traversal(root))
     # print("Top nodes of the tree:", tree_ops.top_view(root))
