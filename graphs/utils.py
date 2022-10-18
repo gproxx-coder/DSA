@@ -127,10 +127,12 @@ def all_funcs(graph, start, end):
                 parent[neighbour] = ptr
 
     print("BFS:", visited)
-    print(f"Shortest Distance between {start} & {end}:", level[end])
+    print(level)
+    print(f"Shortest Distance between {start} & {end}:", level.get(end, -1))
 
     curr = end
     sp = []
+    print(parent)
     while curr:
         sp.append(curr)
         curr = parent.get(curr, None)
@@ -138,29 +140,43 @@ def all_funcs(graph, start, end):
     print(f"Shortest Path between {start} & {end}:", sp)
 
 
-if __name__ == '__main__':
-    graph = {
-        "a": ["b", "d"],
-        "b": ["a", "c"],
-        "c": ["b"],
-        "d": ["a", "e", "f"],
-        "e": ["d", "f", "g"],
-        "f": ["d", "e", "h"],
-        "g": ["e", "h"],
-        "h": ["g", "f"]
-    }
+def edges_to_graph(edges):
+    from collections import defaultdict
+    graph = defaultdict(list)
 
+    for edge in edges:
+        graph[edge[0]].append(edge[1])
+        graph[edge[1]].append(edge[0])
+
+    return graph
+
+
+if __name__ == '__main__':
     # graph = {
-    #     "a": ["b", "c"],
-    #     "b": ["a", "d"],
-    #     "c": ["a", "d"],
-    #     "d": ["b", "c", "e"],
-    #     "e": ["d"]
+    #     "a": ["b", "d"],
+    #     "b": ["a", "c"],
+    #     "c": ["b"],
+    #     "d": ["a", "e", "f"],
+    #     "e": ["d", "f", "g"],
+    #     "f": ["d", "e", "h"],
+    #     "g": ["e", "h"],
+    #     "h": ["g", "f"]
     # }
 
+    graph = {
+        "0": ["1", "2"],
+        "1": ["0"],
+        "2": ["0"],
+        "3": ["4", "5"],
+        "4": ["3", "5"],
+        "5": ["3", "4"]
+    }
+
     # print("BFS Traversal:", bfs(graph))
-    start, end = "a", "e"
     # print("Shortest Distance:", shortest_distance(graph, start, end))
     # print("Shortest Path:", shortest_path(graph, start, end))
 
+    edges = [[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]]
+    graph = edges_to_graph(edges)
+    start, end = 0, 5
     all_funcs(graph, start, end)
