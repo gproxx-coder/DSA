@@ -329,13 +329,17 @@ class BinaryTree:
             return left_tops + [root] + right_tops
 
     @staticmethod
+    # We assign hd (horizontal distance) to every node
     def vertical_order_traversal(root):
         if root:
             from collections import defaultdict
             queue = [root]
             hash_table = defaultdict(list)
+
+            # Hz Distance of root will be zero always
             root.hd = 0
             hash_table[0] = [root]
+
             while queue:
                 ptr = queue.pop(0)
 
@@ -478,7 +482,6 @@ if __name__ == '__main__':
 
     tree_ops = BinaryTree()
 
-
     # print(tree_ops.preorder_traversal(root))
 
     # print(tree_ops.preorder_traversal(root))
@@ -499,7 +502,7 @@ if __name__ == '__main__':
     # print("Left nodes of the tree:", tree_ops.get_left_side_nodes(root))
     # print("Right nodes of the tree:", tree_ops.get_right_side_nodes(root))
 
-    print("Diameter of the tree:",tree_ops.get_diameter(root))
+    print("Diameter of the tree:", tree_ops.get_diameter(root))
 
     # print("Vertical Order Traversal:", tree_ops.vertical_order_traversal(root))
     # print("Top nodes of the tree:", tree_ops.top_view(root))
